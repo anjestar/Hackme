@@ -1,0 +1,56 @@
+<!-- 导航条
+================================================== -->
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a id="brand" class="brand" onclick="javascript:hide();">隐藏答题卡</a>
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <think:nav name="nav">
+                    	<eq name="nav.pid" value="0">
+                        <li>
+                            <a href="{$nav.url|get_nav_url}" target="<eq name='nav.target' value='1'>_blank<else/>_self</eq>">{$nav.title}</a>
+                        </li>
+                        </eq>
+                    </think:nav>
+                </ul>
+            </div>
+            <div class="nav-collapse collapse pull-right">
+            <div id="tip" style="margin:0px 0px;float: left">
+			<ul class="nav">
+<li align="right"><span class="badge badge-danger">选择题</span><span class="badge badge-inverse" >1.<?php  echo $_SESSION['T1']?></span>&nbsp;<span class="badge badge-inverse">2.<?php  echo $_SESSION['T2']?></span><span class="badge badge-inverse">3.<?php  echo $_SESSION['T3']?></span><span class="badge badge-inverse">4.<?php  echo $_SESSION['T4']?></span><span class="badge badge-inverse">5.<?php  echo $_SESSION['T5']?></span><span class="badge badge-inverse">6.<?php  echo $_SESSION['T6']?></span><span class="badge badge-inverse">7.<?php  echo $_SESSION['T7']?></span><span class="badge badge-inverse">8.<?php  echo $_SESSION['T8']?></span><span class="badge badge-inverse">9.<?php  echo $_SESSION['T9']?></span><span class="badge badge-inverse">10.<?php  echo $_SESSION['T10']?></span><span class="badge badge-inverse">11.<?php  echo $_SESSION['T11']?></span><span class="badge badge-inverse">12.<?php  echo $_SESSION['T12']?></span><span class="badge badge-inverse">13.<?php  echo $_SESSION['T13']?></span><span class="badge badge-inverse">14.<?php  echo $_SESSION['T14']?></span><span class="badge badge-inverse">15.<?php  echo $_SESSION['T15']?></span><span class="badge badge-inverse">16.<?php  echo $_SESSION['T16']?></span><span class="badge badge-inverse">17.<?php  echo $_SESSION['T17']?></span><span class="badge badge-inverse">18.<?php  echo $_SESSION['T18']?></span><span class="badge badge-inverse">19.<?php  echo $_SESSION['T19']?></span><span class="badge badge-inverse">20.<?php  echo $_SESSION['T20']?></span><br/>
+					<span class="badge badge-danger">基础题</span>&nbsp;<span class="badge badge-inverse"><?php  echo $_SESSION['TN']?></span>&nbsp;
+					<span class="badge badge-danger">脚本题</span>&nbsp;<span class="badge badge-inverse"><?php  echo $_SESSION['TS']?></span>&nbsp;
+					<span class="badge badge-danger">益智题</span>&nbsp;<span class="badge badge-inverse"><?php  echo $_SESSION['TI']?></span>&nbsp;
+					<span class="badge badge-danger">上传题</span>&nbsp;<span class="badge badge-inverse"><?php  echo $_SESSION['TU']?></span>&nbsp;
+					<span class="badge badge-danger">解密题</span>&nbsp;<span class="badge badge-inverse"><?php  echo $_SESSION['TD']?></span>&nbsp;</li></ul></div>
+                <if condition="is_login()">
+                    <ul class="nav" style="margin-right:0">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding-left:0;padding-right:0">{:get_username()}<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+							<li><a href="./record.php">提交答案</a></li>
+                                <li><a href="{:U('User/profile')}">修改密码</a></li>
+                                <li><a href="{:U('User/logout')}">退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                <else/>
+                    <ul class="nav" style="margin-right:0">
+                        <li>
+                            <a href="{:U('User/login')}">登录</a>
+                        </li>
+                        <li>
+                            <a href="{:U('User/register')}" style="padding-left:0;padding-right:0">注册</a>
+                        </li>
+                    </ul>
+                </if>
+            </div>
+        </div>
+    </div>
+</div>

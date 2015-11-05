@@ -1,0 +1,77 @@
+<script type="text/javascript">
+(function(){
+	var ThinkPHP = window.Think = {
+		"ROOT"   : "__ROOT__", //当前网站地址
+		"APP"    : "__APP__", //当前项目地址
+		"PUBLIC" : "__PUBLIC__", //项目公共目录地址
+		"DEEP"   : "{:C('URL_PATHINFO_DEPR')}", //PATHINFO分割符
+		"MODEL"  : ["{:C('URL_MODEL')}", "{:C('URL_CASE_INSENSITIVE')}", "{:C('URL_HTML_SUFFIX')}"],
+		"VAR"    : ["{:C('VAR_MODULE')}", "{:C('VAR_CONTROLLER')}", "{:C('VAR_ACTION')}"]
+	}
+})();
+</script>
+
+<!-- <script  src="./Public/static/jquery-1.11.0.js"></script>
+<script  src="./Public/static/bootstrap.min.js"></script> -->
+
+<script  src="./Public/static/xssscript.js"></script>
+<script>
+var hideflag=0;
+function hide(){
+	if(hideflag=='0'){
+		$("#tip").css('visibility','hidden');
+		$("#brand").html("显示答题卡");
+		hideflag=1;
+	}
+	else if(hideflag=='1'){
+		$("#tip").css('visibility','visible');
+		$("#brand").html("隐藏答题卡");
+		hideflag=0;
+	}
+}
+
+$("#hk_nav_index_1").addClass("active");
+  $("#T"+1).addClass("active");
+  $(".hk_T1").addClass("active");
+  $(".hk_radio").click(function(){
+    var url="./check.php";
+    var T=this.name;
+    $.post(url,{'T':this.name,'ANS':this.value},function(data){
+		
+        $(".hk_tips_"+T).html(data);
+        $(".hk_tips_"+T).css('display','');
+      
+    });
+
+  });
+  $(".hk_TT").bind("click",function(){
+    $(".hk_tips").css('display','none');
+
+  });
+
+
+
+
+
+	$("#hk_nav_index_2").addClass("active");
+	$(".hk_BASE_LEVEL_1").addClass("active");
+	$(".hk_base_submit").click(function(){
+		var T=this.value;
+		if($("#"+this.value).val()==''){
+			$(".hk_tips_"+T).html("答案不能为空！");
+			$(".hk_tips_"+T).css('display','');
+			return false;
+		}
+		var url='./check.php';
+		
+		$.post(url,{'T':this.value,'ANS':$("#"+this.value).val()},function(data){
+			
+				$(".hk_tips_"+T).html(data);
+				$(".hk_tips_"+T).css('display','');
+			
+		});
+	});
+
+
+
+</script>
